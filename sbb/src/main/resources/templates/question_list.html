@@ -1,0 +1,23 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">	
+	<table class="table">
+		<thead class="table-dark">
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성일지</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each = "question, loop : ${questionList}">  <!-- 타임리프에서 샤용되는 속성 model 객체에 저장한 questionKList를 읽을 수 있다.-->
+				<td th:text="${loop.count}"></td>
+				<td>
+					<a th:href="@{|/question/detail/${question.id}|}" th:text = "${question.subject}"></a>
+				</td>
+				<td th:text = "${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/question/create}" class="btn btn-primary">질문 등록하기</a>
+</div>
+</html>
